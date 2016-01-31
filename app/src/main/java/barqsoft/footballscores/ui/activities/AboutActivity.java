@@ -1,4 +1,4 @@
-package barqsoft.footballscores;
+package barqsoft.footballscores.ui.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,8 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.rowland.common.ui.activities.BaseToolBarActivity;
 
-public class AboutActivity extends ActionBarActivity {
+import barqsoft.footballscores.R;
+
+
+public class AboutActivity extends BaseToolBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

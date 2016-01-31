@@ -1,4 +1,4 @@
-package barqsoft.footballscores;
+package barqsoft.footballscores.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import barqsoft.footballscores.R;
+import barqsoft.footballscores.utilities.GeneralUtility;
 
 /**
  * Created by yehya khaled on 2/26/2015.
@@ -46,7 +50,7 @@ public class ScoresAdapter extends CursorAdapter {
         String homeTeamName = cursor.getString(COL_HOME);
         String awayTeamName = cursor.getString(COL_AWAY);
         String matchTime = cursor.getString(COL_MATCHTIME);
-        String score = Utilies.getScoresString(context, cursor.getInt(COL_HOME_GOALS), cursor.getInt(COL_AWAY_GOALS));
+        String score = GeneralUtility.getScoresString(context, cursor.getInt(COL_HOME_GOALS), cursor.getInt(COL_AWAY_GOALS));
 
         mHolder.home_name.setText(homeTeamName);
         mHolder.home_name.setContentDescription(context.getString(R.string.a11y_home_team, homeTeamName));
@@ -62,9 +66,9 @@ public class ScoresAdapter extends CursorAdapter {
 
         mHolder.match_id = cursor.getDouble(COL_ID);
 
-        mHolder.home_crest.setImageResource(Utilies.getTeamCrestByTeamName(
+        mHolder.home_crest.setImageResource(GeneralUtility.getTeamCrestByTeamName(
                 context, homeTeamName));
-        mHolder.away_crest.setImageResource(Utilies.getTeamCrestByTeamName(
+        mHolder.away_crest.setImageResource(GeneralUtility.getTeamCrestByTeamName(
                 context, awayTeamName));
 
         //Log.v(FetchScoreTask.LOG_TAG,mHolder.home_name.getText() + " Vs. " + mHolder.away_name.getText() +" id " + String.valueOf(mHolder.match_id));
@@ -79,8 +83,8 @@ public class ScoresAdapter extends CursorAdapter {
             container.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
                     , ViewGroup.LayoutParams.MATCH_PARENT));
 
-            String matchDayDescription = Utilies.getMatchDayString(context, cursor.getInt(COL_MATCHDAY), cursor.getInt(COL_LEAGUE));
-            String leagueDescription = context.getString(Utilies.getLeagueStringResource(cursor.getInt(COL_LEAGUE)));
+            String matchDayDescription = GeneralUtility.getMatchDayString(context, cursor.getInt(COL_MATCHDAY), cursor.getInt(COL_LEAGUE));
+            String leagueDescription = context.getString(GeneralUtility.getLeagueStringResource(cursor.getInt(COL_LEAGUE)));
 
             TextView match_day = (TextView) v.findViewById(R.id.matchday_textview);
             match_day.setText(matchDayDescription);
@@ -115,6 +119,25 @@ public class ScoresAdapter extends CursorAdapter {
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, ShareText + FOOTBALL_SCORES_HASHTAG);
         return shareIntent;
+    }
+
+    public class ViewHolder {
+        public TextView home_name;
+        public TextView away_name;
+        public TextView score;
+        public TextView date;
+        public ImageView home_crest;
+        public ImageView away_crest;
+        public double match_id;
+
+        public ViewHolder(View view) {
+            home_name = (TextView) view.findViewById(R.id.home_name);
+            away_name = (TextView) view.findViewById(R.id.away_name);
+            score = (TextView) view.findViewById(R.id.score_textview);
+            date = (TextView) view.findViewById(R.id.data_textview);
+            home_crest = (ImageView) view.findViewById(R.id.home_crest);
+            away_crest = (ImageView) view.findViewById(R.id.away_crest);
+        }
     }
 
 }

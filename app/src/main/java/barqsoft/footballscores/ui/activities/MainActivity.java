@@ -1,4 +1,4 @@
-package barqsoft.footballscores;
+package barqsoft.footballscores.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends ActionBarActivity {
+import com.rowland.common.ui.activities.BaseToolBarActivity;
+
+import barqsoft.footballscores.R;
+import barqsoft.footballscores.ui.fragments.PagerFragment;
+
+public class MainActivity extends BaseToolBarActivity {
     public static int selected_match_id;
     public static int current_fragment = 2;
     private final String save_tag = "Save Test";

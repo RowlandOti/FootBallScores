@@ -1,4 +1,4 @@
-package barqsoft.footballscores.service;
+package barqsoft.footballscores.services;
 
 import android.app.IntentService;
 import android.content.ContentValues;
@@ -28,13 +28,13 @@ import barqsoft.footballscores.R;
 /**
  * Created by yehya khaled on 3/2/2015.
  */
-public class FetchScoresService extends IntentService {
-    public static final String LOG_TAG = "FetchScoresService";
+public class UpdateScoresService extends IntentService {
+    public static final String LOG_TAG = "UpdateScoresService";
 
     public static final String ACTION_DATA_UPDATED = "barqsoft.footballscores.ACTION_DATA_UPDATED";
 
-    public FetchScoresService() {
-        super("FetchScoresService");
+    public UpdateScoresService() {
+        super("UpdateScoresService");
     }
 
     @Override

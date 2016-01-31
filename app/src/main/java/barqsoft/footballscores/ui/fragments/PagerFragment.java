@@ -1,4 +1,4 @@
-package barqsoft.footballscores;
+package barqsoft.footballscores.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,6 +14,11 @@ import android.view.ViewGroup;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import barqsoft.footballscores.MainScreenFragment;
+import barqsoft.footballscores.R;
+import barqsoft.footballscores.ui.activities.MainActivity;
+import barqsoft.footballscores.utilities.TimeUtility;
 
 /**
  * Created by yehya khaled on 2/27/2015.
@@ -59,31 +64,7 @@ public class PagerFragment extends Fragment {
         // Returns the page title for the top indicator
         @Override
         public CharSequence getPageTitle(int position) {
-            return getDayName(getActivity(), System.currentTimeMillis() + ((position - 2) * 86400000));
-        }
-
-        public String getDayName(Context context, long dateInMillis) {
-            // If the date is today, return the localized version of "Today" instead of the actual
-            // day name.
-
-            Time t = new Time();
-            t.setToNow();
-            int julianDay = Time.getJulianDay(dateInMillis, t.gmtoff);
-            int currentJulianDay = Time.getJulianDay(System.currentTimeMillis(), t.gmtoff);
-            if (julianDay == currentJulianDay) {
-                return context.getString(R.string.today);
-            } else if (julianDay == currentJulianDay + 1) {
-                return context.getString(R.string.tomorrow);
-            } else if (julianDay == currentJulianDay - 1) {
-                return context.getString(R.string.yesterday);
-            } else {
-                Time time = new Time();
-                time.setToNow();
-                // Otherwise, the format is just the day of the week (e.g "Wednesday".
-                String formatString = context.getString(R.string.date_format_dayoftheweek);
-                SimpleDateFormat dayFormat = new SimpleDateFormat(formatString);
-                return dayFormat.format(dateInMillis);
-            }
+            return TimeUtility.getDayName(getActivity(), System.currentTimeMillis() + ((position - 2) * 86400000));
         }
     }
 }
