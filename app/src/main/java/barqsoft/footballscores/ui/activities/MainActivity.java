@@ -29,6 +29,8 @@ public class MainActivity extends BaseToolBarActivity {
                     .add(R.id.container, my_main)
                     .commit();
         }
+
+        initStetho();
     }
 
 

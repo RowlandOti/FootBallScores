@@ -33,6 +33,7 @@
                 android:value="barqsoft.footballscores.ui.activities.MainActivity" />
         </activity>
         <service android:name=".services.UpdateScoresService" />
+        <service android:name=".services.FetchScoresService" />
 
         <receiver
             android:name=".widget.ScoresWidgetProvider"
