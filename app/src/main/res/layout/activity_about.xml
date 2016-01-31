@@ -5,9 +5,15 @@
     android:orientation="vertical"
     tools:context="barqsoft.footballscores.ui.activities.AboutActivity">
 
-    <include layout="@layout/toolbar"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+    </android.support.v7.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/container"

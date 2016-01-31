@@ -22,6 +22,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+
     public ScoresAdapter mAdapter;
     public static final int SCORES_LOADER = 0;
     private String[] fragmentdate = new String[1];
@@ -30,7 +31,6 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     // ButterKnife injected views
     @Bind(R.id.scores_list)
     ListView mScoreListView;
-    // ButterKnife injected views
     @Bind(R.id.empty_list)
     View mEmptyView;
 
@@ -83,7 +83,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        // Update the scores
         StartUpdateScoreService();
     }
 

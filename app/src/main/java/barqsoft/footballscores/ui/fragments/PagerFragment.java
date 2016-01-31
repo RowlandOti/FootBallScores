@@ -66,7 +66,6 @@ public class PagerFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         // Check which instance we are dealing with
         if (getActivity() instanceof MainActivity) {
             // Set the ToolBar
