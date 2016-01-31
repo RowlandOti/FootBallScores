@@ -11,9 +11,9 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.widget.RemoteViews;
 
-import barqsoft.footballscores.MainActivity;
 import barqsoft.footballscores.R;
-import barqsoft.footballscores.service.FetchScoresService;
+import barqsoft.footballscores.services.UpdateScoresService;
+import barqsoft.footballscores.ui.activities.MainActivity;
 
 /**
  * Created by alex on 7/11/15.
@@ -46,7 +46,7 @@ public class ScoresWidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
         super.onReceive(context, intent);
-        if (FetchScoresService.ACTION_DATA_UPDATED.equals(intent.getAction())) {
+        if (UpdateScoresService.ACTION_DATA_UPDATED.equals(intent.getAction())) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
                     new ComponentName(context, getClass()));

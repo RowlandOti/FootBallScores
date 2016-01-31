@@ -14,8 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import barqsoft.footballscores.R;
-import barqsoft.footballscores.Utilies;
 import barqsoft.footballscores.data.DatabaseContract;
+import barqsoft.footballscores.utilities.GeneralUtility;
 
 /**
  * Created by alex on 7/11/15.
@@ -71,7 +71,7 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
                 data = getContentResolver().query(uri,
                         SCORE_COLUMNS,
                         null,
-                        new String[] { todayDate },
+                        new String[]{todayDate},
                         null);
                 Binder.restoreCallingIdentity(identityToken);
             }
@@ -101,16 +101,16 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
                 String homeTeamName = data.getString(COL_HOME);
                 String awayTeamName = data.getString(COL_AWAY);
                 String matchTime = data.getString(COL_MATCHTIME);
-                String score = Utilies.getScoresString(ScoresWidgetRemoteViewsService.this,
+                String score = GeneralUtility.getScoresString(ScoresWidgetRemoteViewsService.this,
                         data.getInt(COL_HOME_GOALS), data.getInt(COL_AWAY_GOALS));
 
                 views.setTextViewText(R.id.widget_home_name, homeTeamName);
                 views.setTextViewText(R.id.widget_away_name, awayTeamName);
                 views.setTextViewText(R.id.widget_match_time, matchTime);
                 views.setTextViewText(R.id.widget_score, score);
-                views.setImageViewResource(R.id.widget_home_crest, Utilies.getTeamCrestByTeamName(
+                views.setImageViewResource(R.id.widget_home_crest, GeneralUtility.getTeamCrestByTeamName(
                         ScoresWidgetRemoteViewsService.this, homeTeamName));
-                views.setImageViewResource(R.id.widget_away_crest, Utilies.getTeamCrestByTeamName(
+                views.setImageViewResource(R.id.widget_away_crest, GeneralUtility.getTeamCrestByTeamName(
                         ScoresWidgetRemoteViewsService.this, awayTeamName));
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {

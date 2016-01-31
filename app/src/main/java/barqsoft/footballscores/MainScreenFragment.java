@@ -14,7 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import barqsoft.footballscores.data.DatabaseContract;
-import barqsoft.footballscores.service.FetchScoresService;
+import barqsoft.footballscores.services.UpdateScoresService;
+import barqsoft.footballscores.ui.activities.MainActivity;
+import barqsoft.footballscores.ui.adapters.ScoresAdapter;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -29,7 +31,7 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     }
 
     private void update_scores() {
-        Intent service_start = new Intent(getActivity(), FetchScoresService.class);
+        Intent service_start = new Intent(getActivity(), UpdateScoresService.class);
         getActivity().startService(service_start);
     }
 
@@ -52,7 +54,7 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
         score_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ViewHolder selected = (ViewHolder) view.getTag();
+                ScoresAdapter.ViewHolder selected = (ScoresAdapter.ViewHolder) view.getTag();
                 mAdapter.detail_match_id = selected.match_id;
                 MainActivity.selected_match_id = (int) selected.match_id;
                 mAdapter.notifyDataSetChanged();
