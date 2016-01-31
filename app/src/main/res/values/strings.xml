@@ -21,7 +21,7 @@
     <string name="date_format_ymd" translatable="false">yyyy-MM-dd</string>
     <string name="date_format_dayoftheweek" translatable="false">EEEE</string>
 
-    <string name="no_scores">No Scores Data Available</string>
+    <string name="empty_scores_list">No Scores are Currently Available</string>
 
     <string name="format_group_stages">
         Group Stages, Matchday : <xliff:g id="match_day">%1$s</xliff:g>

@@ -65,7 +65,6 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         mAdapter = new ScoresAdapter(getActivity(), null, 0);
         mScoreListView.setAdapter(mAdapter);
         mScoreListView.setEmptyView(mEmptyView);
-        getLoaderManager().initLoader(SCORES_LOADER, null, this);
         mAdapter.detail_match_id = MainActivity.selected_match_id;
         mScoreListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -85,6 +84,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         super.onActivityCreated(savedInstanceState);
         // Update the scores
         StartUpdateScoreService();
+        getLoaderManager().initLoader(SCORES_LOADER, null, this);
     }
 
     @Override

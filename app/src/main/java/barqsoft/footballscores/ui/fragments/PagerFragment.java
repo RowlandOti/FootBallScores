@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import butterknife.ButterKnife;
  * Created by yehya khaled on 2/27/2015.
  */
 public class PagerFragment extends Fragment {
+
     public static final int NUM_PAGES = 5;
     private myPageAdapter mPagerAdapter;
     private MainFragment[] viewFragments = new MainFragment[5];
@@ -32,6 +34,8 @@ public class PagerFragment extends Fragment {
     ViewPager mViewPager;
     @Bind(R.id.toolbar)
     Toolbar mToolBar;
+    @Bind(R.id.pagertabstrip)
+    PagerTabStrip mPagerTabStrip;
 
     // Called to instantiate the fragment's view hierarchy
     @Override
@@ -59,6 +63,8 @@ public class PagerFragment extends Fragment {
         }
         mViewPager.setAdapter(mPagerAdapter);
         mViewPager.setCurrentItem(MainActivity.current_fragment);
+        mPagerTabStrip.setBackgroundColor(getResources().getColor(R.color.apptheme_accent_red));
+        mPagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.apptheme_accent_teal));
     }
 
     // Called when the containing activity onCreate() is done, and after onCreateView() of fragment
@@ -69,7 +75,7 @@ public class PagerFragment extends Fragment {
         // Check which instance we are dealing with
         if (getActivity() instanceof MainActivity) {
             // Set the ToolBar
-            ((MainActivity) getActivity()).setToolbar(mToolBar, true, false, R.drawable.toolbar_logo);
+            ((MainActivity) getActivity()).setToolbar(mToolBar, false, false, R.drawable.toolbar_logo);
         }
     }
 
