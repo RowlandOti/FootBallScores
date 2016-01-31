@@ -4,8 +4,8 @@
     android:layout_margin="@dimen/list_horizonal_margin"
     android:padding="@dimen/activity_vertical_margin">
 
-
     <include layout="@layout/inc_swipable_recycler" />
 
     <include layout="@layout/inc_empty_textview" />
+
 </FrameLayout>

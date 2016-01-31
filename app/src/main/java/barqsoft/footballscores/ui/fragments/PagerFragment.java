@@ -3,7 +3,6 @@ package barqsoft.footballscores.ui.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -34,8 +33,24 @@ public class PagerFragment extends Fragment {
     Toolbar mToolBar;
     @Bind(R.id.pagertabstrip)
     PagerTabStrip mPagerTabStrip;
+
     private myPageAdapter mPagerAdapter;
     private MainFragment[] viewFragments = new MainFragment[5];
+
+    public static PagerFragment newInstance(Bundle args) {
+        PagerFragment fragment = new PagerFragment();
+        if (args != null) {
+            fragment.setArguments(args);
+        }
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //Don't destroy fragment across orientation change
+        setRetainInstance(true);
+    }
 
     // Called to instantiate the fragment's view hierarchy
     @Override
@@ -79,7 +94,7 @@ public class PagerFragment extends Fragment {
         }
     }
 
-    public int getCurrentItem(){
+    public int getCurrentItem() {
         return mViewPager.getCurrentItem();
     }
 

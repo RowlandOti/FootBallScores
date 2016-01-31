@@ -2,6 +2,8 @@ package barqsoft.footballscores.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,21 +18,37 @@ public class MainActivity extends BaseToolBarActivity {
     public static int selected_match_id;
     public static int current_fragment = 2;
     private final String save_tag = "Save Test";
-    private PagerFragment my_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Inflate the layout
         setContentView(R.layout.activity_main);
-
-        if (savedInstanceState == null) {
-            my_main = new PagerFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, my_main)
-                    .commit();
+        // However, if we're being restored from a previous state, then we don't need to do anything
+        // and should return or else we could end up with overlapping fragments.
+        if (savedInstanceState != null) {
+            return;
         }
-
+        // Create the detail fragment and add it to the activity
+        // using a fragment transaction.
+        else {
+            // Pass bundle to the fragment
+            showPagerFragment(null);
+        }
         initStetho();
+    }
+
+    // Insert the MainFragment
+    private void showPagerFragment(Bundle args) {
+        // Acquire the Fragment manger
+        FragmentManager fm = getSupportFragmentManager();
+        // Begin the transaction
+        FragmentTransaction ft = fm.beginTransaction();
+        // Create new fragment
+        PagerFragment mPagerFragment = new PagerFragment().newInstance(args);
+        // Prefer replace() over add() see <a>https://github.com/RowlandOti/PopularMovies/issues/1</a>
+        ft.replace(R.id.container, mPagerFragment);
+        ft.commit();
     }
 
 
@@ -55,25 +73,25 @@ public class MainActivity extends BaseToolBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+   /* @Override
     protected void onSaveInstanceState(Bundle outState) {
         Log.v(save_tag, "will save");
-        Log.v(save_tag, "fragment: " + String.valueOf(my_main.getCurrentItem()));
+        Log.v(save_tag, "fragment: " + String.valueOf(mPagerFragment.getCurrentItem()));
         Log.v(save_tag, "selected id: " + selected_match_id);
-        outState.putInt("Pager_Current", my_main.getCurrentItem());
+        outState.putInt("Pager_Current", mPagerFragment.getCurrentItem());
         outState.putInt("Selected_match", selected_match_id);
-        getSupportFragmentManager().putFragment(outState, "my_main", my_main);
+        //getSupportFragmentManager().putFragment(outState, "mPagerFragment", mPagerFragment);
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        Log.v(save_tag, "will retrive");
+        Log.v(save_tag, "will retrieve");
         Log.v(save_tag, "fragment: " + String.valueOf(savedInstanceState.getInt("Pager_Current")));
         Log.v(save_tag, "selected id: " + savedInstanceState.getInt("Selected_match"));
         current_fragment = savedInstanceState.getInt("Pager_Current");
         selected_match_id = savedInstanceState.getInt("Selected_match");
-        my_main = (PagerFragment) getSupportFragmentManager().getFragment(savedInstanceState, "my_main");
+        //mPagerFragment = (PagerFragment) getSupportFragmentManager().getFragment(savedInstanceState, "mPagerFragment");
         super.onRestoreInstanceState(savedInstanceState);
-    }
+    }*/
 }
