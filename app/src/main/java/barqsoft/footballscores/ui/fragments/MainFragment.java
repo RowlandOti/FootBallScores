@@ -43,6 +43,10 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
                 mIsRefreshing = intent.getBooleanExtra(UpdateScoresService.EXTRA_REFRESHING, false);
                 updateRefreshingUI();
             }
+            if (UpdateScoresService.DATA_SOURCE_UPDATED.equals(intent.getAction())) {
+                // Notify the loader of content change
+                getLoaderManager().getLoader(SCORES_LOADER).onContentChanged();
+            }
         }
     };
 
@@ -122,12 +126,14 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     public void onStart() {
         super.onStart();
         getActivity().registerReceiver(mRefreshingReceiver, new IntentFilter(UpdateScoresService.BROADCAST_ACTION_STATE_CHANGE));
+        getActivity().registerReceiver(mRefreshingReceiver, new IntentFilter(UpdateScoresService.DATA_SOURCE_UPDATED));
     }
 
     @Override
     public void onStop() {
         super.onStop();
         getActivity().unregisterReceiver(mRefreshingReceiver);
+        ButterKnife.unbind(this);
     }
 
     @Override

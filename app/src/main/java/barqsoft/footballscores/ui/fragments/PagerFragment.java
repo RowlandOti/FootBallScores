@@ -2,7 +2,6 @@ package barqsoft.footballscores.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -10,20 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.ui.activities.MainActivity;
-import barqsoft.footballscores.ui.adapters.SmartFragmentStatePagerAdapter;
-import barqsoft.footballscores.utilities.TimeUtility;
+import barqsoft.footballscores.ui.adapters.SmartNestedViewPagerAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by yehya khaled on 2/27/2015.
+ * Created by Rowland on 1/30/2016.
  */
 public class PagerFragment extends Fragment {
+
+    // The class Log identifier
+    private final String LOG_TAG = PagerFragment.class.getSimpleName();
 
     public static final int NUM_PAGES = 5;
     // ButterKnife injected views
@@ -34,8 +32,7 @@ public class PagerFragment extends Fragment {
     @Bind(R.id.pagertabstrip)
     PagerTabStrip mPagerTabStrip;
 
-    private myPageAdapter mPagerAdapter;
-    private MainFragment[] viewFragments = new MainFragment[5];
+    private SmartNestedViewPagerAdapter mPagerAdapter;
 
     public static PagerFragment newInstance(Bundle args) {
         PagerFragment fragment = new PagerFragment();
@@ -43,13 +40,6 @@ public class PagerFragment extends Fragment {
             fragment.setArguments(args);
         }
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //Don't destroy fragment across orientation change
-        setRetainInstance(true);
     }
 
     // Called to instantiate the fragment's view hierarchy
@@ -68,14 +58,7 @@ public class PagerFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mPagerAdapter = new myPageAdapter(getChildFragmentManager());
-        for (int i = 0; i < NUM_PAGES; i++) {
-            Date fragmentdate = new Date(System.currentTimeMillis() + ((i - 2) * 86400000));
-            String formatString = getString(R.string.date_format_ymd);
-            SimpleDateFormat mformat = new SimpleDateFormat(formatString);
-            viewFragments[i] = new MainFragment();
-            viewFragments[i].setFragmentDate(mformat.format(fragmentdate));
-        }
+        mPagerAdapter = new SmartNestedViewPagerAdapter(getChildFragmentManager(), getActivity());
         mViewPager.setAdapter(mPagerAdapter);
         mViewPager.setCurrentItem(MainActivity.current_fragment);
         mPagerTabStrip.setBackgroundColor(getResources().getColor(R.color.apptheme_accent_red));
@@ -96,27 +79,5 @@ public class PagerFragment extends Fragment {
 
     public int getCurrentItem() {
         return mViewPager.getCurrentItem();
-    }
-
-    private class myPageAdapter extends SmartFragmentStatePagerAdapter {
-        public myPageAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int i) {
-            return viewFragments[i];
-        }
-
-        @Override
-        public int getCount() {
-            return NUM_PAGES;
-        }
-
-        // Returns the page title for the top indicator
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return TimeUtility.getDayName(getActivity(), System.currentTimeMillis() + ((position - 2) * 86400000));
-        }
     }
 }

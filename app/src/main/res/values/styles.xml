@@ -4,7 +4,7 @@
 
 
     <style name="AppBaseThemeNoActionBar.Dark" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@color/apptheme_background_window</item>
+        <item name="android:windowBackground">@color/apptheme_background_window_grey</item>
         <!-- Setting appcompat’s color theming attrs -->
         <item name="colorPrimary">@color/apptheme_primary_grey_light</item>
         <item name="colorPrimaryDark">@color/apptheme_primary_grey</item>
