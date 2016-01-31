@@ -1,4 +1,4 @@
-package barqsoft.footballscores;
+package barqsoft.footballscores.ui.fragments;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,24 +13,31 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import barqsoft.footballscores.R;
 import barqsoft.footballscores.data.DatabaseContract;
 import barqsoft.footballscores.services.UpdateScoresService;
 import barqsoft.footballscores.ui.activities.MainActivity;
 import barqsoft.footballscores.ui.adapters.ScoresAdapter;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
-/**
- * A placeholder fragment containing a simple view.
- */
-public class MainScreenFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     public ScoresAdapter mAdapter;
     public static final int SCORES_LOADER = 0;
     private String[] fragmentdate = new String[1];
     private int last_selected_item = -1;
 
-    public MainScreenFragment() {
+    // ButterKnife injected views
+    @Bind(R.id.scores_list)
+    ListView mScoreListView;
+    // ButterKnife injected views
+    @Bind(R.id.empty_list)
+    View mEmptyView;
+
+    public MainFragment() {
     }
 
-    private void update_scores() {
+    private void StartUpdateScoreService() {
         Intent service_start = new Intent(getActivity(), UpdateScoresService.class);
         getActivity().startService(service_start);
     }
@@ -39,19 +46,28 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
         fragmentdate[0] = date;
     }
 
+    // Called to instantiate the fragment's view hierarchy
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             final Bundle savedInstanceState) {
-        update_scores();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        final ListView score_list = (ListView) rootView.findViewById(R.id.scores_list);
-        final View emptyView = (View) rootView.findViewById(R.id.empty_list);
+        // Inflate all views
+        ButterKnife.bind(this, rootView);
+        // Return the view for this fragment
+        return rootView;
+    }
+
+    // Called after onCreateView() is done i.e the fragment's view has been created
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         mAdapter = new ScoresAdapter(getActivity(), null, 0);
-        score_list.setAdapter(mAdapter);
-        score_list.setEmptyView(emptyView);
+        mScoreListView.setAdapter(mAdapter);
+        mScoreListView.setEmptyView(mEmptyView);
         getLoaderManager().initLoader(SCORES_LOADER, null, this);
         mAdapter.detail_match_id = MainActivity.selected_match_id;
-        score_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mScoreListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ScoresAdapter.ViewHolder selected = (ScoresAdapter.ViewHolder) view.getTag();
@@ -60,7 +76,15 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
                 mAdapter.notifyDataSetChanged();
             }
         });
-        return rootView;
+    }
+
+    // Called when the containing activity onCreate() is done, and after onCreateView() of fragment
+    // Do final modification on the hierarchy e.g modify view elements and restore previous state
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        StartUpdateScoreService();
     }
 
     @Override
@@ -71,25 +95,13 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        //Log.v(FetchScoreTask.LOG_TAG,"loader finished");
-        //cursor.moveToFirst();
-        /*
-        while (!cursor.isAfterLast())
-        {
-            Log.v(FetchScoreTask.LOG_TAG,cursor.getString(1));
-            cursor.moveToNext();
-        }
-        */
-
         int i = 0;
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             i++;
             cursor.moveToNext();
         }
-        //Log.v(FetchScoreTask.LOG_TAG,"Loader query: " + String.valueOf(i));
         mAdapter.swapCursor(cursor);
-        //mAdapter.notifyDataSetChanged();
     }
 
     @Override

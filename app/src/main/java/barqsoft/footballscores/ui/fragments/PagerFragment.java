@@ -1,13 +1,11 @@
 package barqsoft.footballscores.ui.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.format.Time;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,35 +13,65 @@ import android.view.ViewGroup;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import barqsoft.footballscores.MainScreenFragment;
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.ui.activities.MainActivity;
 import barqsoft.footballscores.utilities.TimeUtility;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by yehya khaled on 2/27/2015.
  */
 public class PagerFragment extends Fragment {
     public static final int NUM_PAGES = 5;
-    public ViewPager mPagerHandler;
     private myPageAdapter mPagerAdapter;
-    private MainScreenFragment[] viewFragments = new MainScreenFragment[5];
+    private MainFragment[] viewFragments = new MainFragment[5];
 
+    // ButterKnife injected views
+    @Bind(R.id.viewpager)
+    ViewPager mViewPager;
+    @Bind(R.id.toolbar)
+    Toolbar mToolBar;
+
+    // Called to instantiate the fragment's view hierarchy
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.pager_fragment, container, false);
-        mPagerHandler = (ViewPager) rootView.findViewById(R.id.pager);
+        // Inflate all views
+        ButterKnife.bind(this, rootView);
+        // Return the view for this fragment
+        return rootView;
+    }
+
+    // Called after onCreateView() is done i.e the fragment's view has been created
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         mPagerAdapter = new myPageAdapter(getChildFragmentManager());
         for (int i = 0; i < NUM_PAGES; i++) {
             Date fragmentdate = new Date(System.currentTimeMillis() + ((i - 2) * 86400000));
             String formatString = getString(R.string.date_format_ymd);
             SimpleDateFormat mformat = new SimpleDateFormat(formatString);
-            viewFragments[i] = new MainScreenFragment();
+            viewFragments[i] = new MainFragment();
             viewFragments[i].setFragmentDate(mformat.format(fragmentdate));
         }
-        mPagerHandler.setAdapter(mPagerAdapter);
-        mPagerHandler.setCurrentItem(MainActivity.current_fragment);
-        return rootView;
+        mViewPager.setAdapter(mPagerAdapter);
+        mViewPager.setCurrentItem(MainActivity.current_fragment);
+    }
+
+    // Called when the containing activity onCreate() is done, and after onCreateView() of fragment
+    // Do final modification on the hierarchy e.g modify view elements and restore previous state
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        // Check which instance we are dealing with
+        if (getActivity() instanceof MainActivity) {
+            // Set the ToolBar
+            ((MainActivity) getActivity()).setToolbar(mToolBar, true, false, R.drawable.ic_logo_48px);
+        }
     }
 
     private class myPageAdapter extends FragmentStatePagerAdapter {
