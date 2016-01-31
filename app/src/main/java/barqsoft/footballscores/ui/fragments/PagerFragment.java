@@ -74,6 +74,10 @@ public class PagerFragment extends Fragment {
         }
     }
 
+    public int getCurrentItem(){
+        return mViewPager.getCurrentItem();
+    }
+
     private class myPageAdapter extends FragmentStatePagerAdapter {
         @Override
         public Fragment getItem(int i) {
