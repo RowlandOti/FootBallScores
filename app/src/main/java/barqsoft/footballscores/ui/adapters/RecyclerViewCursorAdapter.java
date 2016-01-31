@@ -2,33 +2,27 @@ package barqsoft.footballscores.ui.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.v4.widget.CursorAdapter;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Calendar;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import barqsoft.footballscores.R;
 
 /**
  * Created by Oti Rowland on 12/21/2015.
- *
+ * <p/>
  * Heavily adapted from <a>http://stackoverflow.com/a/27732748/1464571</a> with hints from
  * <a>https://github.com/androidessence/RecyclerViewCursorAdapter</a>
- * ToDo: Upgrade to Realm using <a>http://stackoverflow.com/a/33568015/1464571</a>
  */
-public class RecyclerViewCursorAdapter extends RecyclerView.Adapter<RecyclerViewCursorAdapter.CustomViewHolder> {
+public class RecyclerViewCursorAdapter extends RecyclerView.Adapter<RecyclerViewCursorAdapter.ViewHolder> {
 
     // PATCH: Because RecyclerView.Adapter in its current form doesn't natively support
     // cursors, we "wrap" a CursorAdapter that will do all the job for us
-    CursorAdapter mCursorAdapter;
+    ScoresAdapter mScoreCursorAdapter;
     // A quick acess to the context
     Context mContext;
     // A Calendar object to help in formatting time
@@ -36,93 +30,61 @@ public class RecyclerViewCursorAdapter extends RecyclerView.Adapter<RecyclerView
 
 
     public RecyclerViewCursorAdapter(Context context, Cursor c) {
-
         mContext = context;
-
-        mCursorAdapter = new CursorAdapter(mContext, c, 0) {
-
-            @Override
-            public View newView(Context context, Cursor cursor, ViewGroup parent) {
-                // Inflate the view here with layout to inflate for CustomViewHolder
-                View view = LayoutInflater.from(context).inflate(R.layout.grid_item_column, parent, false);
-                // Return this view
-                return view;
-            }
-
-            @Override
-            public void bindView(View view, Context context, Cursor cursor) {
-                // Get hold of the CustomViewHolder
-                CustomViewHolder holder = (CustomViewHolder) view.getTag();
-                // Binding operations
-                holder.mGridItemContainer.setContentDescription(holder.mGridItemContainer.getContext().getString(R.string.movie_title, movie.getOriginalTitle()));
-                // ToDo: Replace this with code for cursor
-                if (cursor!= null) {
-                    mCalendar.setTime(cursor.getString(cursor.getColumnIndex(MovieEntry.COLUMN_MOVIE_RELEASEDATE)));
-                    holder.mReleaseDateTextView.setText(String.valueOf(mCalendar.get(Calendar.YEAR)));
-                    holder.mReleaseDateTextView.setContentDescription(holder.mReleaseDateTextView.getContext().getString(R.string.movie_year, String.valueOf(mCalendar.get(Calendar.YEAR))));
-                }
-
-
-                String imageUrl = EBaseURlTypes.MOVIE_API_IMAGE_BASE_URL.getUrlType() + EBaseImageSize.IMAGE_SIZE_W185.getImageSize() + movie.getPosterPath();
-                final RelativeLayout container = holder.mMovieTitleContainer;
-                // Use Picasso to load the images
-                Picasso.with(holder.mMovieImageView.getContext()).load(imageUrl).placeholder(R.drawable.ic_movie_placeholder).
-                        into(holder.mMovieImageView);
-
-            }
-        };
+        mScoreCursorAdapter = new ScoresAdapter(mContext, c, 0);
     }
 
 
-    // Called when RecyclerView needs a new CustomViewHolder of the given type to represent an item.
+    // Called when RecyclerView needs a new ViewHolder of the given type to represent an item.
     @Override
-    public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Passing the inflater job to the CursorAdapter object
-        View view = mCursorAdapter.newView(mContext, mCursorAdapter.getCursor(), parent);
-        CustomViewHolder holder = new CustomViewHolder(view);
+        View view = mScoreCursorAdapter.newView(mContext, mScoreCursorAdapter.getCursor(), parent);
+        ViewHolder holder = new ViewHolder(view);
         //Set the tag ,for access casting later
         view.setTag(holder);
-        // Return new CustomViewHolder
+        // Return new ViewHolder
         return holder;
     }
 
     // Called by RecyclerView to display the data at the specified position.
     @Override
-    public void onBindViewHolder(CustomViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         // Passing the binding operation to cursor loader
-        mCursorAdapter.getCursor().moveToPosition(position);
-        mCursorAdapter.bindView(holder.itemView, mContext, mCursorAdapter.getCursor());
+        mScoreCursorAdapter.getCursor().moveToPosition(position);
+        mScoreCursorAdapter.bindView(holder.itemView, mContext, mScoreCursorAdapter.getCursor());
     }
 
     @Override
     public int getItemCount() {
-        return mCursorAdapter.getCount();
+        return mScoreCursorAdapter.getCount();
+    }
+
+    public void swapCursor(Cursor cursor) {
+        mScoreCursorAdapter.swapCursor(cursor);
     }
 
     // Takes care of the overhead of recycling and gives better performance and scrolling
-    public class CustomViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.grid_sort_type_text_view)
-        TextView mSortTypeValueTextView;
+        public double match_id;
 
-        @Bind(R.id.grid_release_date_text_view)
-        TextView mReleaseDateTextView;
+        public TextView mHomeName;
+        public TextView mAwayName;
+        public TextView mGameDate;
+        public TextView mGameScore;
+        public ImageView mHomeCrest;
+        public ImageView mAwayCrest;
 
-        @Bind(R.id.grid_poster_image_view)
-        ImageView mMovieImageView;
-
-        @Bind(R.id.grid_sort_type_image_view)
-        ImageView mSortTypeIconImageView;
-
-        @Bind(R.id.grid_title_container)
-        RelativeLayout mMovieTitleContainer;
-
-        @Bind(R.id.grid_container)
-        FrameLayout mGridItemContainer;
-
-        public CustomViewHolder(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+
+            mHomeName = (TextView) itemView.findViewById(R.id.home_name);
+            mAwayName = (TextView) itemView.findViewById(R.id.away_name);
+            mGameScore = (TextView) itemView.findViewById(R.id.score_textview);
+            mGameDate = (TextView) itemView.findViewById(R.id.date_textview);
+            mHomeCrest = (ImageView) itemView.findViewById(R.id.home_crest);
+            mAwayCrest = (ImageView) itemView.findViewById(R.id.away_crest);
         }
     }
 

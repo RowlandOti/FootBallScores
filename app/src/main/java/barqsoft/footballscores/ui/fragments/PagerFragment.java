@@ -16,6 +16,7 @@ import java.util.Date;
 
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.ui.activities.MainActivity;
+import barqsoft.footballscores.ui.adapters.SmartFragmentStatePagerAdapter;
 import barqsoft.footballscores.utilities.TimeUtility;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,9 +27,6 @@ import butterknife.ButterKnife;
 public class PagerFragment extends Fragment {
 
     public static final int NUM_PAGES = 5;
-    private myPageAdapter mPagerAdapter;
-    private MainFragment[] viewFragments = new MainFragment[5];
-
     // ButterKnife injected views
     @Bind(R.id.viewpager)
     ViewPager mViewPager;
@@ -36,6 +34,8 @@ public class PagerFragment extends Fragment {
     Toolbar mToolBar;
     @Bind(R.id.pagertabstrip)
     PagerTabStrip mPagerTabStrip;
+    private myPageAdapter mPagerAdapter;
+    private MainFragment[] viewFragments = new MainFragment[5];
 
     // Called to instantiate the fragment's view hierarchy
     @Override
@@ -75,7 +75,7 @@ public class PagerFragment extends Fragment {
         // Check which instance we are dealing with
         if (getActivity() instanceof MainActivity) {
             // Set the ToolBar
-            ((MainActivity) getActivity()).setToolbar(mToolBar, false, false, R.drawable.toolbar_logo);
+            ((MainActivity) getActivity()).setToolbar(mToolBar, false, true, R.drawable.toolbar_logo);
         }
     }
 
@@ -83,7 +83,11 @@ public class PagerFragment extends Fragment {
         return mViewPager.getCurrentItem();
     }
 
-    private class myPageAdapter extends FragmentStatePagerAdapter {
+    private class myPageAdapter extends SmartFragmentStatePagerAdapter {
+        public myPageAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
         @Override
         public Fragment getItem(int i) {
             return viewFragments[i];
@@ -92,10 +96,6 @@ public class PagerFragment extends Fragment {
         @Override
         public int getCount() {
             return NUM_PAGES;
-        }
-
-        public myPageAdapter(FragmentManager fm) {
-            super(fm);
         }
 
         // Returns the page title for the top indicator

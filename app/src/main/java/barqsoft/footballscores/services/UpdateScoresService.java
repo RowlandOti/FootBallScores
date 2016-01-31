@@ -30,8 +30,11 @@ import barqsoft.footballscores.R;
  */
 public class UpdateScoresService extends IntentService {
 
+    // Logging Identifier for class
     public static final String LOG_TAG = UpdateScoresService.class.getSimpleName();
-    public static final String DATA_SOURCE_UPDATED = "barqsoft.footballscores.widget.DATA_SOURCE_UPDATED";
+    public static final String DATA_SOURCE_UPDATED = "barqsoft.footballscores.intent.action.DATA_SOURCE_UPDATED";
+    public static final String BROADCAST_ACTION_STATE_CHANGE = "barqsoft.footballscores.intent.action.STATE_CHANGE";
+    public static final String EXTRA_REFRESHING = "barqsoft.footballscores.intent.extra.REFRESHING";
 
 
     public UpdateScoresService()
@@ -42,8 +45,10 @@ public class UpdateScoresService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent)
     {
+        sendStickyBroadcast(new Intent(BROADCAST_ACTION_STATE_CHANGE).putExtra(EXTRA_REFRESHING, true));
         getData("n2");
         getData("p2");
+        sendStickyBroadcast(new Intent(BROADCAST_ACTION_STATE_CHANGE).putExtra(EXTRA_REFRESHING, false));
 
         return;
     }

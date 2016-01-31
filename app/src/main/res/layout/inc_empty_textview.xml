@@ -26,6 +26,7 @@
     android:paddingRight="@dimen/empty_text_viewPadding"
     android:paddingTop="@dimen/empty_text_viewPadding"
     android:text="@string/empty_scores_list"
+    android:textColor="@color/apptheme_primary_text_black"
     android:textAppearance="?android:textAppearanceLarge"
     android:visibility="gone">
 

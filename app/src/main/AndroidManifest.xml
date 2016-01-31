@@ -3,6 +3,7 @@
     package="barqsoft.footballscores">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
 
     <application
         android:allowBackup="true"
@@ -33,7 +34,6 @@
                 android:value="barqsoft.footballscores.ui.activities.MainActivity" />
         </activity>
         <service android:name=".services.UpdateScoresService" />
-        <service android:name=".services.FetchScoresService" />
 
         <receiver
             android:name=".widget.ScoresWidgetProvider"

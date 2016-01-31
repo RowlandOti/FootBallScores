@@ -56,7 +56,7 @@
                 tools:text="2 - 4" />
 
             <TextView
-                android:id="@+id/data_textview"
+                android:id="@+id/date_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
