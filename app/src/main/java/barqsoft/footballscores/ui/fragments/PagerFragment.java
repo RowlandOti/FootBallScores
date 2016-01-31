@@ -70,7 +70,7 @@ public class PagerFragment extends Fragment {
         // Check which instance we are dealing with
         if (getActivity() instanceof MainActivity) {
             // Set the ToolBar
-            ((MainActivity) getActivity()).setToolbar(mToolBar, true, false, R.drawable.ic_logo_48px);
+            ((MainActivity) getActivity()).setToolbar(mToolBar, true, false, R.drawable.toolbar_logo);
         }
     }
 
