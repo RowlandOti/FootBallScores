@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "barqsoft.footballscores"
+        minSdkVersion 10
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    // LOCAL BINARY DEPENDENCY
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // MODULE DEPENDENCY
+    compile project(':libraries:common')
+    // REMOTE BINARY DEPENDENCY - Android
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    // REMOTE BINARY DEPENDENCY - Third Party
+    // Use - View Injection support
+    compile 'com.jakewharton:butterknife:7.0.1'
+}

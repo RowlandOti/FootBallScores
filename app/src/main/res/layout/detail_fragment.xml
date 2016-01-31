@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/league_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            tools:text="@string/league_serie_a"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/league_text_size" />
+
+        <TextView
+            android:id="@+id/matchday_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            tools:text="@string/quarter_final"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/league_text_size" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+        <Button
+            android:id="@+id/share_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableLeft="@android:drawable/ic_menu_share"
+            android:drawableStart="@android:drawable/ic_menu_share"
+            android:gravity="center"
+            android:paddingRight="@dimen/share_button_margin"
+            android:paddingEnd="@dimen/share_button_margin"
+            android:paddingLeft="@dimen/share_button_margin"
+            android:paddingStart="@dimen/share_button_margin"
+            android:text="@string/share_text"
+            android:contentDescription="@string/share_text"
+            tools:ignore="NewApi" />
+    </FrameLayout>
+
+</LinearLayout>

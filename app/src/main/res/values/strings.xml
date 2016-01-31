@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">Football Scores</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="test_text">Test</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="matchday_text">Match day</string>
+    <string name="group_stage_text">Group stages</string>
+    <string name="first_knockout_round">First knockout round</string>
+    <string name="quarter_final">Quarter Final</string>
+    <string name="semi_final">Semi Final</string>
+    <string name="final_text">Final</string>
+    <string name="share_text">Share</string>
+    <string name="about">About</string>
+    <string name="title_activity_about">About</string>
+
+    <string name="date_format_ymd" translatable="false">yyyy-MM-dd</string>
+    <string name="date_format_dayoftheweek" translatable="false">EEEE</string>
+
+    <string name="no_scores">No Scores Data Available</string>
+
+    <string name="format_group_stages">
+        Group Stages, Matchday : <xliff:g id="match_day">%1$s</xliff:g>
+    </string>
+    <string name="format_match_day">
+        Matchday : <xliff:g id="match_day">%1$s</xliff:g>
+    </string>
+    <string name="format_scores">
+        <xliff:g id="match_day">%1$s</xliff:g> - <xliff:g id="match_day">%2$s</xliff:g>
+    </string>
+
+    <string name="team_arsenal" translatable="false">Arsenal London FC</string>
+    <string name="team_manchester_united" translatable="false">Manchester United FC</string>
+    <string name="team_swansea_city" translatable="false">Swansea City</string>
+    <string name="team_leicester_city" translatable="false">Leicester City</string>
+    <string name="team_everton" translatable="false">Everton FC</string>
+    <string name="team_west_ham" translatable="false">West Ham United FC</string>
+    <string name="team_tottenham_hotspur" translatable="false">Tottenham Hotspur FC</string>
+    <string name="team_west_bromwich_albion" translatable="false">West Bromwich Albion</string>
+    <string name="team_sunderland" translatable="false">Sunderland AFC</string>
+    <string name="team_stoke_city" translatable="false">Stoke City FC</string>
+
+    <string name="league_serie_a" translatable="false">Serie A</string>
+    <string name="league_premier_league" translatable="false">Premier League</string>
+    <string name="league_champions_league" translatable="false">UEFA Champions League</string>
+    <string name="league_primera_division" translatable="false">Primera Division</string>
+    <string name="league_bundesliga" translatable="false">Bundesliga</string>
+    <string name="league_unknown">Unknown League. Please report</string>
+
+    <string name="a11y_away_team">
+        Away Team : <xliff:g id="team">%1$s</xliff:g>
+    </string>
+    <string name="a11y_home_team">
+        Home Team : <xliff:g id="team">%1$s</xliff:g>
+    </string>
+    <string name="a11y_score">
+        Score : <xliff:g id="score">%1$s</xliff:g>
+    </string>
+    <string name="a11y_match_time">
+        Match Time : <xliff:g id="time">%1$s</xliff:g>
+    </string>
+    <string name="a11y_league">
+        League : <xliff:g id="time">%1$s</xliff:g>
+    </string>
+
+    <string name="title_widget_scores">Football Scores Today</string>
+
+    <string name="about_text">
+        This Application get Football Matches Score for the Premier League,Seria A,Bundesliga,Primera Division
+        and the Uefa Champions League.
+        All Matches data are acquired from football-data.org free API.
+        All team Logos are acquired from http://hdlogo.wordpress.com/ upon requesting permission form the owner.
+        The original version of this app was created by Yahia Khalid Ibn El Walid Ahmed, and a modified version is given to students in the Udacity Android Nanodegree program.
+        To report any bugs,or suggestions do not hesitate to send a mail to y.k.ibnelwalid@gmail.com.
+
+        During the off season, fake data will be added to the app.
+    </string>
+    <string name="widget_text">This is a widget probably.</string>
+    <string name="dummy_data">{\"timeFrameStart\":\"2015-06-18\",\"timeFrameEnd\":\"2015-06-19\",\"count\":1,\"fixtures\":[{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}}]}</string>
+</resources>
