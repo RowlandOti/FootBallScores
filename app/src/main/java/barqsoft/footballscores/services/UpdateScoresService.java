@@ -31,7 +31,7 @@ import barqsoft.footballscores.R;
 public class UpdateScoresService extends IntentService {
 
     public static final String LOG_TAG = UpdateScoresService.class.getSimpleName();
-    public static final String ACTION_DATA_UPDATED = "barqsoft.footballscores.ACTION_DATA_UPDATED";
+    public static final String DATA_SOURCE_UPDATED = "barqsoft.footballscores.widget.DATA_SOURCE_UPDATED";
 
 
     public UpdateScoresService()
@@ -250,13 +250,13 @@ public class UpdateScoresService extends IntentService {
                     match_values.put(DatabaseContract.scores_table.LEAGUE_COL,League);
                     match_values.put(DatabaseContract.scores_table.MATCH_DAY,match_day);
 
-                    Log.v(LOG_TAG,match_id);
+                    /*Log.v(LOG_TAG,match_id);
                     Log.v(LOG_TAG,mDate);
                     Log.v(LOG_TAG,mTime);
                     Log.v(LOG_TAG,Home);
                     Log.v(LOG_TAG,Away);
                     Log.v(LOG_TAG,Home_goals);
-                    Log.v(LOG_TAG,Away_goals);
+                    Log.v(LOG_TAG,Away_goals);*/
 
                     values.add(match_values);
                 }
@@ -268,7 +268,7 @@ public class UpdateScoresService extends IntentService {
 
             if (inserted_data > 0) {
                 // Notify widget to perhaps refresh its data
-                Intent i = new Intent(ACTION_DATA_UPDATED).setPackage(getPackageName());
+                Intent i = new Intent(DATA_SOURCE_UPDATED).setPackage(getPackageName());
                 sendBroadcast(i);
             }
 

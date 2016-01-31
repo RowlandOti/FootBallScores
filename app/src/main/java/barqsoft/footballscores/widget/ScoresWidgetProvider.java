@@ -46,7 +46,7 @@ public class ScoresWidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
         super.onReceive(context, intent);
-        if (UpdateScoresService.ACTION_DATA_UPDATED.equals(intent.getAction())) {
+        if (UpdateScoresService.DATA_SOURCE_UPDATED.equals(intent.getAction())) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
                     new ComponentName(context, getClass()));

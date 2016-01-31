@@ -21,4 +21,6 @@
     <dimen name="widget_scores_min_resize_height">@dimen/widget_scores_default_height</dimen>
 
     <dimen name="list_item_divider_height">15sp</dimen>
+
+    <dimen name="empty_text_viewPadding">16dp</dimen>
 </resources>

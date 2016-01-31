@@ -26,6 +26,9 @@ dependencies {
     compile project(':libraries:common')
     // REMOTE BINARY DEPENDENCY - Android
     compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:cardview-v7:23.1.1'
+    compile 'com.android.support:recyclerview-v7:23.1.1'
     // REMOTE BINARY DEPENDENCY - Third Party
     // Use - View Injection support
     compile 'com.jakewharton:butterknife:7.0.1'

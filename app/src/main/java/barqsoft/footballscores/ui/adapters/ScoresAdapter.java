@@ -18,6 +18,7 @@ import barqsoft.footballscores.utilities.GeneralUtility;
  * Created by yehya khaled on 2/26/2015.
  */
 public class ScoresAdapter extends CursorAdapter {
+    
     public static final int COL_HOME = 3;
     public static final int COL_AWAY = 4;
     public static final int COL_HOME_GOALS = 6;

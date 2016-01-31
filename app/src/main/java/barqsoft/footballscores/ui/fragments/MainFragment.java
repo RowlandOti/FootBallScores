@@ -7,11 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.data.DatabaseContract;
@@ -29,10 +31,10 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     private int last_selected_item = -1;
 
     // ButterKnife injected views
-    @Bind(R.id.scores_list)
-    ListView mScoreListView;
-    @Bind(R.id.empty_list)
-    View mEmptyView;
+    @Bind(R.id.scores_recycle_view_list)
+    RecyclerView mScoreListView;
+    @Bind(R.id.empty_list_textview)
+    TextView mEmptyTextView;
 
     public MainFragment() {
     }
