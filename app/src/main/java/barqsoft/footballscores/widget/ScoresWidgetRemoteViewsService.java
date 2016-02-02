@@ -22,7 +22,14 @@ import barqsoft.footballscores.utilities.GeneralUtility;
  */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
-    public final String LOG_TAG = ScoresWidgetRemoteViewsService.class.getSimpleName();
+    static final int COL_HOME = 0;
+    static final int COL_AWAY = 1;
+    static final int COL_HOME_GOALS = 2;
+    static final int COL_AWAY_GOALS = 3;
+    static final int COL_LEAGUE = 4;
+    static final int COL_MATCHDAY = 5;
+    static final int COL_MATCHTIME = 6;
+    static final int COL_MATCHID = 7;
     private static final String[] SCORE_COLUMNS = {
             DatabaseContract.scores_table.HOME_COL,
             DatabaseContract.scores_table.AWAY_COL,
@@ -33,15 +40,7 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
             DatabaseContract.scores_table.TIME_COL,
             DatabaseContract.scores_table.MATCH_ID
     };
-
-    static final int COL_HOME = 0;
-    static final int COL_AWAY = 1;
-    static final int COL_HOME_GOALS = 2;
-    static final int COL_AWAY_GOALS = 3;
-    static final int COL_LEAGUE = 4;
-    static final int COL_MATCHDAY = 5;
-    static final int COL_MATCHTIME = 6;
-    static final int COL_MATCHID = 7;
+    public final String LOG_TAG = ScoresWidgetRemoteViewsService.class.getSimpleName();
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {

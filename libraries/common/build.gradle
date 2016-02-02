@@ -24,6 +24,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     // REMOTE BINARY DEPENDENCY - Android
     compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:recyclerview-v7:23.1.1'
     // REMOTE BINARY DEPENDENCY - Third Party
     // Use - Data & network flow analytics/debugging support
     compile 'com.facebook.stetho:stetho:1.2.0'

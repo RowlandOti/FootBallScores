@@ -21,12 +21,14 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import com.rowland.common.ui.adapters.SmartFragmentStatePagerAdapter;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import barqsoft.footballscores.R;
-import barqsoft.footballscores.ui.fragments.MainFragment;
 import barqsoft.footballscores.ui.fragments.PagerFragment;
+import barqsoft.footballscores.ui.fragments.ScoresFragment;
 import barqsoft.footballscores.utilities.TimeUtility;
 
 
@@ -50,9 +52,10 @@ public class SmartNestedViewPagerAdapter extends SmartFragmentStatePagerAdapter 
         String formatString = mContext.getString(R.string.date_format_ymd);
         SimpleDateFormat mformat = new SimpleDateFormat(formatString);
         // Scores fragment
-        MainFragment popularFragment = new MainFragment();
-        popularFragment.setFragmentDate(mformat.format(fragmentdate));
-        return popularFragment;
+        ScoresFragment scoresFragment = new ScoresFragment();
+        scoresFragment.setFragmentDate(mformat.format(fragmentdate));
+
+        return scoresFragment;
     }
 
     @Override

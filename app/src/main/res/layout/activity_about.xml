@@ -19,7 +19,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_about"
-        tools:ignore="MergeRootFrame"/>
+        tools:ignore="MergeRootFrame"
+        tools:layout="@layout/fragment_about" />
 
 </LinearLayout>

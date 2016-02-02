@@ -9,25 +9,25 @@
         android:id="@+id/widget"
         android:layout_width="match_parent"
         android:layout_height="@dimen/abc_action_bar_default_height_material"
-        android:orientation="horizontal"
-        android:background="@color/apptheme_primary_grey_light">
+        android:background="@color/apptheme_primary_grey_light"
+        android:orientation="horizontal">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
-            android:src="@drawable/ic_launcher"
             android:contentDescription="@string/app_name"
-            />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
-            android:text="@string/title_widget_scores"
-            android:textColor="@android:color/white"
-            android:textAppearance="?android:textAppearanceLarge"
             android:paddingLeft="@dimen/list_item_padding"
-            android:paddingStart="@dimen/list_item_padding" />
+            android:paddingStart="@dimen/list_item_padding"
+            android:text="@string/title_widget_scores"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
 
@@ -38,20 +38,20 @@
         android:background="@android:color/white">
 
         <ListView
+            android:id="@+id/widget_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/widget_list"
             android:dividerHeight="@dimen/list_item_divider_height"
-            tools:listitem="@layout/widget_scores_list_item"/>
+            tools:listitem="@layout/widget_scores_list_item" />
 
         <TextView
             android:id="@+id/widget_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:fontFamily="sans-serif-condensed"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:text="@string/empty_scores_list"/>
+            android:gravity="center"
+            android:text="@string/empty_scores_list"
+            android:textAppearance="?android:textAppearanceLarge" />
     </FrameLayout>
 
 </LinearLayout>

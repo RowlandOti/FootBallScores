@@ -17,7 +17,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.data.DatabaseContract;
@@ -25,14 +25,24 @@ import barqsoft.footballscores.services.UpdateScoresService;
 import barqsoft.footballscores.ui.adapters.RecyclerViewCursorAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, SwipeRefreshLayout.OnRefreshListener {
+public class ScoresFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, SwipeRefreshLayout.OnRefreshListener {
 
-    public RecyclerViewCursorAdapter mScoresRecyclerViewAdapter;
+    // The class Log identifier
+    private final String LOG_TAG = ScoresFragment.class.getSimpleName();
+
     public static final int SCORES_LOADER = 0;
+    public RecyclerViewCursorAdapter mScoresRecyclerViewAdapter;
+    // ButterKnife injected Views
+    @Bind(R.id.sw_refresh_layout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    @Bind(R.id.scores_recycle_view_list)
+    RecyclerView mScoresRecyclerView;
+    @Bind(R.id.empty_list_view)
+    LinearLayout mEmptyListView;
+    // Each fragments date
     private String[] fragmentdate = new String[1];
-    private int last_selected_item = -1;
-
     // Refresh state
     private boolean mIsRefreshing = false;
     // Refresh broadcastreceiver
@@ -50,15 +60,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         }
     };
 
-    // ButterKnife injected Views
-    @Bind(R.id.sw_refresh_layout)
-    SwipeRefreshLayout mSwipeRefreshLayout;
-    @Bind(R.id.scores_recycle_view_list)
-    RecyclerView mScoresRecyclerView;
-    @Bind(R.id.empty_list_textview)
-    TextView mEmptyTextView;
-
-    public MainFragment() {
+    public ScoresFragment() {
     }
 
     public void setFragmentDate(String date) {
@@ -69,7 +71,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
         // Inflate all views
         ButterKnife.bind(this, rootView);
         // Return the view for this fragment
@@ -137,8 +139,19 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getLoaderManager().restartLoader(SCORES_LOADER, null, this);
+    }
+
+    @Override
     public void onRefresh() {
         getActivity().startService(new Intent(getActivity(), UpdateScoresService.class));
+    }
+
+    @OnClick(R.id.empty_list_view_button)
+    public void onRefresh(View view) {
+        onRefresh();
     }
 
     @Override
@@ -173,12 +186,12 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     public void updateEmptyView() {
         if (mScoresRecyclerViewAdapter.getItemCount() == 0) {
             // Show Empty TextView
-            mScoresRecyclerView.setVisibility(View.GONE);
-            mEmptyTextView.setVisibility(View.VISIBLE);
+            mSwipeRefreshLayout.setVisibility(View.GONE);
+            mEmptyListView.setVisibility(View.VISIBLE);
         } else {
             // Show RecycleView filled with scores
-            mScoresRecyclerView.setVisibility(View.VISIBLE);
-            mEmptyTextView.setVisibility(View.GONE);
+            mSwipeRefreshLayout.setVisibility(View.VISIBLE);
+            mEmptyListView.setVisibility(View.GONE);
         }
     }
 }

@@ -16,7 +16,7 @@
  *
  */
 
-package barqsoft.footballscores.ui.adapters;
+package com.rowland.common.ui.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

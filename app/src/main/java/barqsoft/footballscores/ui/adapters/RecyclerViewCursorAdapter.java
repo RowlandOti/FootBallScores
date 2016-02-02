@@ -20,6 +20,9 @@ import barqsoft.footballscores.R;
  */
 public class RecyclerViewCursorAdapter extends RecyclerView.Adapter<RecyclerViewCursorAdapter.ViewHolder> {
 
+    // The class Log identifier
+    private final String LOG_TAG = RecyclerViewCursorAdapter.class.getSimpleName();
+
     // PATCH: Because RecyclerView.Adapter in its current form doesn't natively support
     // cursors, we "wrap" a CursorAdapter that will do all the job for us
     ScoresAdapter mScoreCursorAdapter;

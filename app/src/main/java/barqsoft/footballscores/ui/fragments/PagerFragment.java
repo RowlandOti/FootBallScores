@@ -20,10 +20,9 @@ import butterknife.ButterKnife;
  */
 public class PagerFragment extends Fragment {
 
+    public static final int NUM_PAGES = 5;
     // The class Log identifier
     private final String LOG_TAG = PagerFragment.class.getSimpleName();
-
-    public static final int NUM_PAGES = 5;
     // ButterKnife injected views
     @Bind(R.id.viewpager)
     ViewPager mViewPager;
@@ -60,7 +59,6 @@ public class PagerFragment extends Fragment {
 
         mPagerAdapter = new SmartNestedViewPagerAdapter(getChildFragmentManager(), getActivity());
         mViewPager.setAdapter(mPagerAdapter);
-        mViewPager.setCurrentItem(MainActivity.current_fragment);
         mPagerTabStrip.setBackgroundColor(getResources().getColor(R.color.apptheme_accent_red));
         mPagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.apptheme_accent_teal));
     }
@@ -75,6 +73,12 @@ public class PagerFragment extends Fragment {
             // Set the ToolBar
             ((MainActivity) getActivity()).setToolbar(mToolBar, false, true, R.drawable.toolbar_logo);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     public int getCurrentItem() {
