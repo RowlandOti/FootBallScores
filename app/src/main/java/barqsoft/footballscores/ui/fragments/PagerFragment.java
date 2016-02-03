@@ -75,12 +75,6 @@ public class PagerFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
-
     public int getCurrentItem() {
         return mViewPager.getCurrentItem();
     }

@@ -22,6 +22,7 @@ import barqsoft.footballscores.utilities.GeneralUtility;
  */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
+
     static final int COL_HOME = 0;
     static final int COL_AWAY = 1;
     static final int COL_HOME_GOALS = 2;
@@ -49,7 +50,6 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
 
             @Override
             public void onCreate() {
-                // Nothing to do
             }
 
             @Override
@@ -94,23 +94,19 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
                         data == null || !data.moveToPosition(position)) {
                     return null;
                 }
-                RemoteViews views = new RemoteViews(getPackageName(),
-                        R.layout.widget_scores_list_item);
+                RemoteViews views = new RemoteViews(getPackageName(), R.layout.widget_scores_list_item);
 
                 String homeTeamName = data.getString(COL_HOME);
                 String awayTeamName = data.getString(COL_AWAY);
                 String matchTime = data.getString(COL_MATCHTIME);
-                String score = GeneralUtility.getScoresString(ScoresWidgetRemoteViewsService.this,
-                        data.getInt(COL_HOME_GOALS), data.getInt(COL_AWAY_GOALS));
+                String score = GeneralUtility.getScoresString(ScoresWidgetRemoteViewsService.this, data.getInt(COL_HOME_GOALS), data.getInt(COL_AWAY_GOALS));
 
                 views.setTextViewText(R.id.widget_home_name, homeTeamName);
                 views.setTextViewText(R.id.widget_away_name, awayTeamName);
                 views.setTextViewText(R.id.widget_match_time, matchTime);
                 views.setTextViewText(R.id.widget_score, score);
-                views.setImageViewResource(R.id.widget_home_crest, GeneralUtility.getTeamCrestByTeamName(
-                        ScoresWidgetRemoteViewsService.this, homeTeamName));
-                views.setImageViewResource(R.id.widget_away_crest, GeneralUtility.getTeamCrestByTeamName(
-                        ScoresWidgetRemoteViewsService.this, awayTeamName));
+                views.setImageViewResource(R.id.widget_home_crest, GeneralUtility.getTeamCrestByTeamName(ScoresWidgetRemoteViewsService.this, homeTeamName));
+                views.setImageViewResource(R.id.widget_away_crest, GeneralUtility.getTeamCrestByTeamName(ScoresWidgetRemoteViewsService.this, awayTeamName));
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
                     setRemoteContentDescription(views, R.id.widget_home_crest, homeTeamName);

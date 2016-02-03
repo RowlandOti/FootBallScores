@@ -19,10 +19,8 @@ public class ScoresProvider extends ContentProvider {
     private static final SQLiteQueryBuilder ScoreQuery =
             new SQLiteQueryBuilder();
     private static final String SCORES_BY_LEAGUE = DatabaseContract.scores_table.LEAGUE_COL + " = ?";
-    private static final String SCORES_BY_DATE =
-            DatabaseContract.scores_table.DATE_COL + " LIKE ?";
-    private static final String SCORES_BY_ID =
-            DatabaseContract.scores_table.MATCH_ID + " = ?";
+    private static final String SCORES_BY_DATE = DatabaseContract.scores_table.DATE_COL + " LIKE ?";
+    private static final String SCORES_BY_ID = DatabaseContract.scores_table.MATCH_ID + " = ?";
     private static ScoresDBHelper mOpenHelper;
     private UriMatcher muriMatcher = buildUriMatcher();
 

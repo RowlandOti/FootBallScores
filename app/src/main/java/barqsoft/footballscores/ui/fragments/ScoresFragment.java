@@ -32,6 +32,7 @@ public class ScoresFragment extends Fragment implements LoaderManager.LoaderCall
     // The class Log identifier
     private final String LOG_TAG = ScoresFragment.class.getSimpleName();
 
+    private static final String FRAGMENT_DATE = "fragmentDate";
     public static final int SCORES_LOADER = 0;
     public RecyclerViewCursorAdapter mScoresRecyclerViewAdapter;
     // ButterKnife injected Views
@@ -116,6 +117,8 @@ public class ScoresFragment extends Fragment implements LoaderManager.LoaderCall
         super.onActivityCreated(savedInstanceState);
         // Restore any previous states
         if (savedInstanceState != null) {
+            // Restore query string
+            fragmentdate = savedInstanceState.getStringArray(ScoresFragment.FRAGMENT_DATE);
 
         } else {
             onRefresh();
@@ -135,13 +138,24 @@ public class ScoresFragment extends Fragment implements LoaderManager.LoaderCall
     public void onStop() {
         super.onStop();
         getActivity().unregisterReceiver(mRefreshingReceiver);
-        ButterKnife.unbind(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         getLoaderManager().restartLoader(SCORES_LOADER, null, this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    //Here you Save your data
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putStringArray(ScoresFragment.FRAGMENT_DATE, fragmentdate);
     }
 
     @Override
