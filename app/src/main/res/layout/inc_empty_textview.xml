@@ -51,5 +51,6 @@
         android:paddingRight="@dimen/empty_text_viewPadding"
         android:paddingTop="@dimen/empty_text_viewPadding"
         android:text="@string/button_text"
-        android:textColor="@color/apptheme_primary_text_black" />
+        android:textColor="@color/apptheme_primary_text_black"
+        android:contentDescription="@string/button_text"/>
 </LinearLayout>
