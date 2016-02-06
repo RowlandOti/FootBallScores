@@ -50,11 +50,11 @@ public class ScoresFragment extends Fragment implements LoaderManager.LoaderCall
     private BroadcastReceiver mRefreshingReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (UpdateScoresService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
-                mIsRefreshing = intent.getBooleanExtra(UpdateScoresService.EXTRA_REFRESHING, false);
+            if (UpdateScoresService.REFRESH_STATE_CHANGED_ACTION.equals(intent.getAction())) {
+                mIsRefreshing = intent.getBooleanExtra(UpdateScoresService.EXTRA_REFRESHING_ACTION, false);
                 updateRefreshingUI();
             }
-            if (UpdateScoresService.DATA_SOURCE_UPDATED.equals(intent.getAction())) {
+            if (UpdateScoresService.DATA_SOURCE_UPDATED_ACTION.equals(intent.getAction())) {
                 // Notify the loader of content change
                 getLoaderManager().getLoader(SCORES_LOADER).onContentChanged();
             }
@@ -85,7 +85,6 @@ public class ScoresFragment extends Fragment implements LoaderManager.LoaderCall
         super.onViewCreated(view, savedInstanceState);
         // Configure the refresh layout look
         mSwipeRefreshLayout.setColorSchemeResources(R.color.apptheme_accent_teal);
-        mSwipeRefreshLayout.setProgressViewOffset(true, 100, 400);
         // Create new instance of layout manager
         final LinearLayoutManager mStaggeredLayoutManger = new LinearLayoutManager(getContext());
         // Set the layout manger
@@ -119,7 +118,6 @@ public class ScoresFragment extends Fragment implements LoaderManager.LoaderCall
         if (savedInstanceState != null) {
             // Restore query string
             fragmentdate = savedInstanceState.getStringArray(ScoresFragment.FRAGMENT_DATE);
-
         } else {
             onRefresh();
         }
@@ -130,8 +128,8 @@ public class ScoresFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public void onStart() {
         super.onStart();
-        getActivity().registerReceiver(mRefreshingReceiver, new IntentFilter(UpdateScoresService.BROADCAST_ACTION_STATE_CHANGE));
-        getActivity().registerReceiver(mRefreshingReceiver, new IntentFilter(UpdateScoresService.DATA_SOURCE_UPDATED));
+        getActivity().registerReceiver(mRefreshingReceiver, new IntentFilter(UpdateScoresService.REFRESH_STATE_CHANGED_ACTION));
+        getActivity().registerReceiver(mRefreshingReceiver, new IntentFilter(UpdateScoresService.DATA_SOURCE_UPDATED_ACTION));
     }
 
     @Override

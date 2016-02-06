@@ -15,10 +15,10 @@
     <dimen name="score_text_size">30sp</dimen>
     <dimen name="league_text_size">15sp</dimen>
 
-    <dimen name="widget_scores_default_height">180dp</dimen>
-    <dimen name="widget_scores_default_width">250dp</dimen>
-    <dimen name="widget_scores_min_resize_width">@dimen/widget_scores_default_width</dimen>
-    <dimen name="widget_scores_min_resize_height">@dimen/widget_scores_default_height</dimen>
+    <dimen name="wdgt_default_height">180dp</dimen>
+    <dimen name="wdgt_default_width">250dp</dimen>
+    <dimen name="wdgt_min_resize_width">@dimen/wdgt_default_width</dimen>
+    <dimen name="wdgt_min_resize_height">@dimen/wdgt_default_height</dimen>
 
     <dimen name="list_item_divider_height">15sp</dimen>
 

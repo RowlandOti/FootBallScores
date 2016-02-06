@@ -36,22 +36,23 @@
         <service android:name=".services.UpdateScoresService" />
 
         <receiver
-            android:name=".widget.ScoresWidgetProvider"
-            android:enabled="@bool/widget_scores_enabled"
-            android:label="@string/title_widget_scores">
+            android:name=".widget.WdgtProvider"
+            android:icon="@drawable/ic_logo_48px"
+            android:enabled="@bool/wdgt_scores_enabled"
+            android:label="@string/wdgt_scores_title">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="barqsoft.footballscores.ACTION_DATA_UPDATED" />
+                <action android:name="barqsoft.footballscores.intent.action.DATA_SOURCE_UPDATED" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_scores" />
+                android:resource="@xml/wdgt_scores" />
         </receiver>
 
         <service
-            android:name=".widget.ScoresWidgetRemoteViewsService"
-            android:enabled="@bool/widget_scores_enabled"
+            android:name=".widget.WdgtRemoteViewsService"
+            android:enabled="@bool/wdgt_scores_enabled"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS"></service>
 

@@ -33,7 +33,7 @@ public class AboutActivity extends BaseToolBarActivity {
                     .commit();
         }
 
-        setToolbar(mToolbar, true, false, R.drawable.toolbar_logo);
+        setToolbar(mToolbar, true, true, R.drawable.toolbar_logo);
     }
 
 
@@ -46,8 +46,7 @@ public class AboutActivity extends BaseToolBarActivity {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             return inflater.inflate(R.layout.fragment_about, container, false);
         }
     }

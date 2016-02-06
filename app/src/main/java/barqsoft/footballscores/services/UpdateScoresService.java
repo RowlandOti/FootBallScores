@@ -32,9 +32,9 @@ public class UpdateScoresService extends IntentService {
 
     // Logging Identifier for class
     public static final String LOG_TAG = UpdateScoresService.class.getSimpleName();
-    public static final String DATA_SOURCE_UPDATED = "barqsoft.footballscores.intent.action.DATA_SOURCE_UPDATED";
-    public static final String BROADCAST_ACTION_STATE_CHANGE = "barqsoft.footballscores.intent.action.STATE_CHANGE";
-    public static final String EXTRA_REFRESHING = "barqsoft.footballscores.intent.extra.REFRESHING";
+    public static final String DATA_SOURCE_UPDATED_ACTION = "barqsoft.footballscores.intent.action.DATA_SOURCE_UPDATED_ACTION";
+    public static final String REFRESH_STATE_CHANGED_ACTION = "barqsoft.footballscores.intent.action.STATE_CHANGE";
+    public static final String EXTRA_REFRESHING_ACTION = "barqsoft.footballscores.intent.extra.REFRESHING";
 
 
     public UpdateScoresService() {
@@ -43,10 +43,10 @@ public class UpdateScoresService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        sendStickyBroadcast(new Intent(BROADCAST_ACTION_STATE_CHANGE).putExtra(EXTRA_REFRESHING, true));
+        sendStickyBroadcast(new Intent(REFRESH_STATE_CHANGED_ACTION).putExtra(EXTRA_REFRESHING_ACTION, true));
         getData("n2");
         getData("p2");
-        sendStickyBroadcast(new Intent(BROADCAST_ACTION_STATE_CHANGE).putExtra(EXTRA_REFRESHING, false));
+        sendStickyBroadcast(new Intent(REFRESH_STATE_CHANGED_ACTION).putExtra(EXTRA_REFRESHING_ACTION, false));
 
         return;
     }
@@ -57,8 +57,7 @@ public class UpdateScoresService extends IntentService {
         final String QUERY_TIME_FRAME = "timeFrame"; //Time Frame parameter to determine days
         //final String QUERY_MATCH_DAY = "matchday";
 
-        Uri fetch_build = Uri.parse(BASE_URL).buildUpon().
-                appendQueryParameter(QUERY_TIME_FRAME, timeFrame).build();
+        Uri fetch_build = Uri.parse(BASE_URL).buildUpon().appendQueryParameter(QUERY_TIME_FRAME, timeFrame).build();
         //Log.v(LOG_TAG, "The url we are looking at is: "+fetch_build.toString()); //log spam
         HttpURLConnection m_connection = null;
         BufferedReader reader = null;
@@ -257,7 +256,7 @@ public class UpdateScoresService extends IntentService {
 
             if (inserted_data > 0) {
                 // Notify widget to perhaps refresh its data
-                Intent i = new Intent(DATA_SOURCE_UPDATED).setPackage(getPackageName());
+                Intent i = new Intent(DATA_SOURCE_UPDATED_ACTION).setPackage(getPackageName());
                 sendBroadcast(i);
             }
 

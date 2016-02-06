@@ -27,14 +27,14 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/widget_home_crest"
+                android:id="@+id/wdgt_home_crest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 tools:src="@drawable/manchester_united" />
 
             <TextView
-                android:id="@+id/widget_home_name"
+                android:id="@+id/wdgt_home_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -51,7 +51,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/widget_score"
+                android:id="@+id/wdgt_score"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
@@ -62,7 +62,7 @@
                 tools:text="2 - 4" />
 
             <TextView
-                android:id="@+id/widget_match_time"
+                android:id="@+id/wdgt_match_time"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
@@ -81,14 +81,14 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/widget_away_crest"
+                android:id="@+id/wdgt_away_crest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 tools:src="@drawable/arsenal" />
 
             <TextView
-                android:id="@+id/widget_away_name"
+                android:id="@+id/wdgt_away_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

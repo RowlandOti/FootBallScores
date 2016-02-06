@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/widget"
+        android:id="@+id/wdgt"
         android:layout_width="match_parent"
         android:layout_height="@dimen/abc_action_bar_default_height_material"
         android:background="@color/apptheme_primary_grey_light"
@@ -25,7 +25,7 @@
             android:layout_gravity="start|center_vertical"
             android:paddingLeft="@dimen/list_item_padding"
             android:paddingStart="@dimen/list_item_padding"
-            android:text="@string/title_widget_scores"
+            android:text="@string/wdgt_scores_title"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@android:color/white" />
     </LinearLayout>
@@ -38,14 +38,14 @@
         android:background="@android:color/white">
 
         <ListView
-            android:id="@+id/widget_list"
+            android:id="@+id/wdgt_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:dividerHeight="@dimen/list_item_divider_height"
-            tools:listitem="@layout/widget_scores_list_item" />
+            tools:listitem="@layout/wdgt_scores_list_item" />
 
         <TextView
-            android:id="@+id/widget_empty"
+            android:id="@+id/wdgt_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="sans-serif-condensed"
