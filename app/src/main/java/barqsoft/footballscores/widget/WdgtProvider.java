@@ -77,7 +77,5 @@ public class WdgtProvider extends AppWidgetProvider {
 
             Log.v(LOG_TAG, "Widget Update IN: " +intent.getAction());
         }
-
-        Log.v(LOG_TAG, "Widget Update OUT: " +intent.getAction());
     }
 }

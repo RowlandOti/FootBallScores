@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Binder;
+import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.RemoteViews;
 
@@ -69,6 +70,7 @@ public class WdgtRemoteViewsService extends android.widget.RemoteViewsService {
 
             @Override
             public int getCount() {
+                Log.v(LOG_TAG, "Widget Data Size: " +data.getCount());
                 return data == null ? 0 : data.getCount();
             }
 
@@ -100,6 +102,11 @@ public class WdgtRemoteViewsService extends android.widget.RemoteViewsService {
                 views.setContentDescription(R.id.wdgt_score, score);
                 views.setContentDescription(R.id.wdgt_home_crest, homeTeamName);
                 views.setContentDescription(R.id.wdgt_away_crest, awayTeamName);
+
+                Log.v(LOG_TAG, "Widget Data Size: " +homeTeamName);
+                Log.v(LOG_TAG, "Widget Data Size: " +awayTeamName);
+                Log.v(LOG_TAG, "Widget Data Size: " +matchTime);
+                Log.v(LOG_TAG, "Widget Data Size: " +score);
 
                 return views;
             }
