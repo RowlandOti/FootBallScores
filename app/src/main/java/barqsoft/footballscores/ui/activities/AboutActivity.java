@@ -29,7 +29,7 @@ public class AboutActivity extends BaseToolBarActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.fragment_container, new PlaceholderFragment())
                     .commit();
         }
 

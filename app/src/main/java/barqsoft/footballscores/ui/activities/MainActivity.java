@@ -45,7 +45,7 @@ public class MainActivity extends BaseToolBarActivity {
         // Create new fragment
         PagerFragment mPagerFragment = new PagerFragment().newInstance(args);
         // Prefer replace() over add() see <a>https://github.com/RowlandOti/PopularMovies/issues/1</a>
-        ft.replace(R.id.container, mPagerFragment);
+        ft.replace(R.id.fragment_container, mPagerFragment);
         ft.commit();
     }
 

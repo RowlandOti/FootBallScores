@@ -10,14 +10,14 @@
     android:layout_marginRight="16dp"
     android:layout_marginTop="16dp"
     android:background="@drawable/list_item"
-    android:elevation="@dimen/list_item_elevation"
+    android:elevation="@dimen/list_elevation"
     card_view:cardCornerRadius="6dp"
     card_view:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/list_item_padding">
+        android:paddingTop="@dimen/list_padding">
 
         <LinearLayout
             android:id="@+id/home_team"

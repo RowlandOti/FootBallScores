@@ -27,7 +27,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import barqsoft.footballscores.R;
-import barqsoft.footballscores.ui.fragments.PagerFragment;
 import barqsoft.footballscores.ui.fragments.ScoresFragment;
 import barqsoft.footballscores.utilities.TimeUtility;
 
@@ -37,7 +36,7 @@ import barqsoft.footballscores.utilities.TimeUtility;
  */
 public class SmartNestedViewPagerAdapter extends SmartFragmentStatePagerAdapter {
 
-    private PagerFragment ht = new PagerFragment();
+    public static final int NUM_PAGES = 5;
     private Context mContext;
 
     public SmartNestedViewPagerAdapter(FragmentManager fm, Context context) {
@@ -52,7 +51,7 @@ public class SmartNestedViewPagerAdapter extends SmartFragmentStatePagerAdapter 
         String formatString = mContext.getString(R.string.date_format_ymd);
         SimpleDateFormat mformat = new SimpleDateFormat(formatString);
         // Scores fragment
-        ScoresFragment scoresFragment = new ScoresFragment();
+        ScoresFragment scoresFragment = ScoresFragment.newInstance(null);
         scoresFragment.setFragmentDate(mformat.format(fragmentdate));
 
         return scoresFragment;
@@ -61,7 +60,7 @@ public class SmartNestedViewPagerAdapter extends SmartFragmentStatePagerAdapter 
     @Override
     public int getCount() {
         // get item count - equal to number of tabs
-        return ht.NUM_PAGES;
+        return NUM_PAGES;
     }
 
     @Override

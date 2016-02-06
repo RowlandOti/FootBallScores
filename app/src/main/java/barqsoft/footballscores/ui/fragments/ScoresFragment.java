@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -19,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.rowland.common.ui.fragments.BaseFragment;
+
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.data.DatabaseContract;
 import barqsoft.footballscores.services.UpdateScoresService;
@@ -27,7 +28,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ScoresFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, SwipeRefreshLayout.OnRefreshListener {
+public class ScoresFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor>, SwipeRefreshLayout.OnRefreshListener {
 
     // The class Log identifier
     private final String LOG_TAG = ScoresFragment.class.getSimpleName();
@@ -57,11 +58,25 @@ public class ScoresFragment extends Fragment implements LoaderManager.LoaderCall
         }
     };
 
+    public static ScoresFragment newInstance(Bundle args) {
+        ScoresFragment fragment = new ScoresFragment();
+        if (args != null) {
+            fragment.setArguments(args);
+        }
+        return fragment;
+    }
+
     public ScoresFragment() {
+        super();
     }
 
     public void setFragmentDate(String date) {
         fragmentdate[0] = date;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     // Called to instantiate the fragment's view hierarchy
@@ -163,7 +178,10 @@ public class ScoresFragment extends Fragment implements LoaderManager.LoaderCall
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(getActivity(), DatabaseContract.scores_table.buildScoreWithDate(), null, null, fragmentdate, null);
+        // Create new loader
+        CursorLoader cursorLoader = new CursorLoader(getActivity(), DatabaseContract.scores_table.buildScoreWithDate(), null, null, fragmentdate, null);
+        // Return new loader
+        return cursorLoader;
     }
 
     @Override

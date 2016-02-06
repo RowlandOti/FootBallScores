@@ -7,14 +7,14 @@
     android:layout_marginRight="16dp"
     android:layout_marginTop="16dp"
     android:background="@drawable/list_item"
-    android:elevation="@dimen/list_item_elevation"
+    android:elevation="@dimen/list_elevation"
     android:orientation="vertical">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/list_item_padding">
+        android:paddingTop="@dimen/list_padding">
 
         <LinearLayout
             android:layout_width="@dimen/team_section_width"

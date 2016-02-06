@@ -4,8 +4,8 @@
     <dimen name="activity_vertical_margin">4dp</dimen>
     <dimen name="list_horizonal_margin">2dp</dimen>
     <dimen name="share_button_margin">120dp</dimen>
-    <dimen name="list_item_elevation">4dp</dimen>
-    <dimen name="list_item_padding">5dp</dimen>
+    <dimen name="list_elevation">4dp</dimen>
+    <dimen name="list_padding">5dp</dimen>
     <dimen name="pager_header_margin">5dp</dimen>
 
     <dimen name="about_text_size">12sp</dimen>
@@ -20,7 +20,7 @@
     <dimen name="wdgt_min_resize_width">@dimen/wdgt_default_width</dimen>
     <dimen name="wdgt_min_resize_height">@dimen/wdgt_default_height</dimen>
 
-    <dimen name="list_item_divider_height">15sp</dimen>
+    <dimen name="list_divider_height">15sp</dimen>
 
     <dimen name="empty_text_viewPadding">16dp</dimen>
 </resources>

@@ -1,13 +1,14 @@
 package barqsoft.footballscores.ui.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.rowland.common.ui.fragments.BaseFragment;
 
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.ui.activities.MainActivity;
@@ -18,9 +19,8 @@ import butterknife.ButterKnife;
 /**
  * Created by Rowland on 1/30/2016.
  */
-public class PagerFragment extends Fragment {
+public class PagerFragment extends BaseFragment {
 
-    public static final int NUM_PAGES = 5;
     // The class Log identifier
     private final String LOG_TAG = PagerFragment.class.getSimpleName();
     // ButterKnife injected views
@@ -45,7 +45,7 @@ public class PagerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.pager_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_pager, container, false);
         // Inflate all views
         ButterKnife.bind(this, rootView);
         // Return the view for this fragment
@@ -56,9 +56,11 @@ public class PagerFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        mPagerAdapter = new SmartNestedViewPagerAdapter(getChildFragmentManager(), getActivity());
+        // Initialize the fragments pager adapter
+        mPagerAdapter = new SmartNestedViewPagerAdapter(getActivity().getSupportFragmentManager(), getActivity());
+        // Set up the adapter
         mViewPager.setAdapter(mPagerAdapter);
+        // Configure the look of the PagerTabstrip
         mPagerTabStrip.setBackgroundColor(getResources().getColor(R.color.apptheme_accent_red));
         mPagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.apptheme_accent_teal));
     }

@@ -8,9 +8,6 @@ import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.RemoteViews;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.data.DatabaseContract;
 import barqsoft.footballscores.utilities.GeneralUtility;
@@ -24,7 +21,7 @@ public class WdgtRemoteViewsService extends android.widget.RemoteViewsService {
     // Logging Identifier for class
     public final String LOG_TAG = WdgtRemoteViewsService.class.getSimpleName();
 
-    private static final String[] SCORE_COLUMNS = {
+    private static final String[] SCORES_COLUMNS = {
             DatabaseContract.scores_table.HOME_COL,
             DatabaseContract.scores_table.AWAY_COL,
             DatabaseContract.scores_table.HOME_GOALS_COL,
@@ -54,8 +51,8 @@ public class WdgtRemoteViewsService extends android.widget.RemoteViewsService {
                 Uri uri = DatabaseContract.scores_table.buildScoreWithDate();
                 String formatString = getString(R.string.date_format_ymd);
                 String todayDate = TimeUtility.getToday(formatString);
-
-                data = getContentResolver().query(uri, SCORE_COLUMNS, null, new String[]{todayDate}, null);
+                // Lets acquire the scores data
+                data = getContentResolver().query(uri, SCORES_COLUMNS, null, new String[]{todayDate}, null);
                 // Restore calling identity for calls to use our process and permission
                 Binder.restoreCallingIdentity(idToken);
             }
@@ -76,6 +73,7 @@ public class WdgtRemoteViewsService extends android.widget.RemoteViewsService {
 
             @Override
             public RemoteViews getViewAt(int position) {
+                // Data must not be null to continue
                 if (position == AdapterView.INVALID_POSITION || data == null || !data.moveToPosition(position)) {
                     return null;
                 }
