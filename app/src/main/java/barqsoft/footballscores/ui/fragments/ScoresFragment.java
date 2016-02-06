@@ -193,6 +193,7 @@ public class ScoresFragment extends BaseFragment implements LoaderManager.Loader
             cursor.moveToNext();
         }
         mScoresRecyclerViewAdapter.swapCursor(cursor);
+        // Failure to notify adapter will result in no data displayed
         mScoresRecyclerViewAdapter.notifyDataSetChanged();
         // Update the Empty View
         updateEmptyView();
