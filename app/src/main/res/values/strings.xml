@@ -67,7 +67,7 @@
         League : <xliff:g id="time">%1$s</xliff:g>
     </string>
 
-    <string name="wdgt_scores_title">Football Scores Today</string>
+    <string name="wdgt_scores_title">Today\'s Scores</string>
 
     <string name="about_text">
         This Application get Football Matches Score for the Premier League,Seria A,Bundesliga,Primera Division

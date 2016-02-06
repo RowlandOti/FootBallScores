@@ -7,7 +7,9 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import barqsoft.footballscores.R;
@@ -67,11 +69,15 @@ public class WdgtProvider extends AppWidgetProvider {
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
         super.onReceive(context, intent);
-        // Check for
+        // Check for correct Intent and update all widget instances
         if (UpdateScoresService.DATA_SOURCE_UPDATED_ACTION.equals(intent.getAction())) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, getClass()));
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.wdgt_list);
+
+            Log.v(LOG_TAG, "Widget Update IN: " +intent.getAction());
         }
+
+        Log.v(LOG_TAG, "Widget Update OUT: " +intent.getAction());
     }
 }

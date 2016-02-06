@@ -37,12 +37,12 @@
 
         <receiver
             android:name=".widget.WdgtProvider"
-            android:icon="@drawable/ic_logo_48px"
             android:enabled="@bool/wdgt_scores_enabled"
+            android:icon="@drawable/ic_logo_48px"
             android:label="@string/wdgt_scores_title">
             <intent-filter>
+                <action android:name="barqsoft.footballscores.intent.action.DATA_SOURCE_UPDATED_ACTION" />
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="barqsoft.footballscores.intent.action.DATA_SOURCE_UPDATED" />
             </intent-filter>
 
             <meta-data

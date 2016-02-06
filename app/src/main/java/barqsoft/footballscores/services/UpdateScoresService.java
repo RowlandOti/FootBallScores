@@ -36,22 +36,20 @@ public class UpdateScoresService extends IntentService {
     public static final String REFRESH_STATE_CHANGED_ACTION = "barqsoft.footballscores.intent.action.STATE_CHANGE";
     public static final String EXTRA_REFRESHING_ACTION = "barqsoft.footballscores.intent.extra.REFRESHING";
 
-
     public UpdateScoresService() {
-        super("FetchScoresService");
+        super("UpdateScoresService");
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        sendStickyBroadcast(new Intent(REFRESH_STATE_CHANGED_ACTION).putExtra(EXTRA_REFRESHING_ACTION, true));
         getData("n2");
         getData("p2");
-        sendStickyBroadcast(new Intent(REFRESH_STATE_CHANGED_ACTION).putExtra(EXTRA_REFRESHING_ACTION, false));
 
         return;
     }
 
     private void getData(String timeFrame) {
+        sendStickyBroadcast(new Intent(REFRESH_STATE_CHANGED_ACTION).putExtra(EXTRA_REFRESHING_ACTION, true));
         //Creating fetch URL
         final String BASE_URL = "http://api.football-data.org/alpha/fixtures"; //Base URL
         final String QUERY_TIME_FRAME = "timeFrame"; //Time Frame parameter to determine days
@@ -125,6 +123,7 @@ public class UpdateScoresService extends IntentService {
         } catch (Exception e) {
             Log.e(LOG_TAG, e.getMessage());
         }
+        sendStickyBroadcast(new Intent(REFRESH_STATE_CHANGED_ACTION).putExtra(EXTRA_REFRESHING_ACTION, false));
     }
 
     private void processJSONdata(String JSONdata, Context mContext, boolean isReal) {
@@ -258,6 +257,7 @@ public class UpdateScoresService extends IntentService {
                 // Notify widget to perhaps refresh its data
                 Intent i = new Intent(DATA_SOURCE_UPDATED_ACTION).setPackage(getPackageName());
                 sendBroadcast(i);
+                Log.v(LOG_TAG, "Data Source Change : " +i.getAction());
             }
 
             Log.v(LOG_TAG, "Succesfully Inserted : " + String.valueOf(inserted_data));

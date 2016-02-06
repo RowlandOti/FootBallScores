@@ -68,7 +68,7 @@ public class RecyclerViewCursorAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     // Takes care of the overhead of recycling and gives better performance and scrolling
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public double match_id;
 

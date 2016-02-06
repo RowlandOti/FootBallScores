@@ -54,10 +54,6 @@ public class ScoresFragment extends Fragment implements LoaderManager.LoaderCall
                 mIsRefreshing = intent.getBooleanExtra(UpdateScoresService.EXTRA_REFRESHING_ACTION, false);
                 updateRefreshingUI();
             }
-            if (UpdateScoresService.DATA_SOURCE_UPDATED_ACTION.equals(intent.getAction())) {
-                // Notify the loader of content change
-                getLoaderManager().getLoader(SCORES_LOADER).onContentChanged();
-            }
         }
     };
 
@@ -129,7 +125,6 @@ public class ScoresFragment extends Fragment implements LoaderManager.LoaderCall
     public void onStart() {
         super.onStart();
         getActivity().registerReceiver(mRefreshingReceiver, new IntentFilter(UpdateScoresService.REFRESH_STATE_CHANGED_ACTION));
-        getActivity().registerReceiver(mRefreshingReceiver, new IntentFilter(UpdateScoresService.DATA_SOURCE_UPDATED_ACTION));
     }
 
     @Override

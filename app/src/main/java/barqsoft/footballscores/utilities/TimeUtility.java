@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.format.Time;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import barqsoft.footballscores.R;
 
@@ -15,7 +16,6 @@ public class TimeUtility {
     public static String getDayName(Context context, long dateInMillis) {
         // If the date is today, return the localized version of "Today" instead of the actual
         // day name.
-
         Time t = new Time();
         t.setToNow();
         int julianDay = Time.getJulianDay(dateInMillis, t.gmtoff);
@@ -34,5 +34,12 @@ public class TimeUtility {
             SimpleDateFormat dayFormat = new SimpleDateFormat(formatString);
             return dayFormat.format(dateInMillis);
         }
+    }
+
+    public static String getToday(String formatString) {
+        SimpleDateFormat format = new SimpleDateFormat(formatString);
+        String todayDate = format.format(new Date());
+
+        return todayDate;
     }
 }
