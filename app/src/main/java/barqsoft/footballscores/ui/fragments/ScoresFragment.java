@@ -67,7 +67,7 @@ public class ScoresFragment extends BaseFragment implements LoaderManager.Loader
     }
 
     public ScoresFragment() {
-        super();
+
     }
 
     public void setFragmentDate(String date) {
@@ -193,6 +193,7 @@ public class ScoresFragment extends BaseFragment implements LoaderManager.Loader
             cursor.moveToNext();
         }
         mScoresRecyclerViewAdapter.swapCursor(cursor);
+        mScoresRecyclerViewAdapter.notifyDataSetChanged();
         // Update the Empty View
         updateEmptyView();
     }

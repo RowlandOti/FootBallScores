@@ -20,6 +20,8 @@
     <dimen name="wdgt_min_resize_width">@dimen/wdgt_default_width</dimen>
     <dimen name="wdgt_min_resize_height">@dimen/wdgt_default_height</dimen>
 
+    <dimen name="sliding_tab_height">40dp</dimen>
+
     <dimen name="list_divider_height">15sp</dimen>
 
     <dimen name="empty_text_viewPadding">16dp</dimen>
