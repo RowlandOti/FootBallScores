@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:background="@android:color/white">
+
+    <ListView
+        android:id="@+id/wdgt_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="@dimen/list_divider_height"
+        tools:listitem="@layout/wdgt_scores_list_item" />
+
+    <!-- Empty TextView-->
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/wdgt_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="@dimen/empty_text_viewPadding"
+        android:paddingLeft="@dimen/empty_text_viewPadding"
+        android:paddingRight="@dimen/empty_text_viewPadding"
+        android:paddingTop="@dimen/empty_text_viewPadding"
+        android:text="@string/empty_scores_list"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@color/apptheme_primary_text_black" />
+</FrameLayout>

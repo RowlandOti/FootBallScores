@@ -1,57 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/wdgt"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/abc_action_bar_default_height_material"
-        android:background="@color/apptheme_primary_grey_light"
-        android:orientation="horizontal">
+    <include layout="@layout/inc_wdgt_bar" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start|center_vertical"
-            android:contentDescription="@string/app_name"
-            android:src="@mipmap/ic_launcher" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start|center_vertical"
-            android:paddingLeft="@dimen/list_padding"
-            android:paddingStart="@dimen/list_padding"
-            android:text="@string/wdgt_scores_title"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@android:color/white">
-
-        <ListView
-            android:id="@+id/wdgt_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:dividerHeight="@dimen/list_divider_height"
-            tools:listitem="@layout/wdgt_scores_list_item" />
-
-        <TextView
-            android:id="@+id/wdgt_empty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="sans-serif-condensed"
-            android:gravity="center"
-            android:text="@string/empty_scores_list"
-            android:textAppearance="?android:textAppearanceLarge" />
-    </FrameLayout>
-
+    <include layout="@layout/inc_wdgt_list" />
+    
 </LinearLayout>
